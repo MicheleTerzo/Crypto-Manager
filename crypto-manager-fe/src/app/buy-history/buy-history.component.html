@@ -1,0 +1,127 @@
+<div class="container mt-5">
+  <div class="row mb-5">
+    <div class="col-12">
+
+      <!--EXPANSION PANEL-->
+      <mat-expansion-panel #expansionPanel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            ADD NEW ENTRY
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <!--FORM-->
+        <form action="" [formGroup]="addNewAssetGroup" (ngSubmit)="onSubmit()">
+          <div class="container-fluid">
+            <div class="row mb-3">
+              <div class="col-12">
+                <mat-checkbox (change)="newCrypto = !newCrypto">
+                  Add New Crypto
+                </mat-checkbox>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-6 form-container">
+                <mat-form-field appearance="outline">
+                  <mat-label>Select Asset</mat-label>
+                  <mat-select
+                    formControlName="assetName"
+                    [disabled]="newCrypto">
+                    <mat-option
+                      *ngFor="let crypto of cryptoAssets"
+                      [value]="crypto.value">
+                      {{crypto.name}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="addNewAssetGroup.controls['assetName'].invalid">
+                    Select a crypto
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-6 form-container">
+                <mat-form-field appearance="outline"
+                                [hidden]="!newCrypto">
+                  <mat-label>New Crypto Name</mat-label>
+                  <input type="text"
+                         matNativeControl
+                         formControlName="assetName">
+                  <mat-error *ngIf="addNewAssetGroup.controls['assetName'].invalid">
+                    Enter a name for the new crypto
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-6 form-container">
+                <mat-form-field appearance="outline">
+                  <mat-label>Quantity</mat-label>
+                  <input type="number"
+                         matNativeControl
+                         formControlName="qty">
+                  <mat-error *ngIf="addNewAssetGroup.controls['qty'].invalid">
+                    Select quantity of the new asset
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-6 form-container">
+                <mat-form-field appearance="outline">
+                  <mat-label>Price</mat-label>
+                  <input type="number"
+                         matNativeControl
+                         formControlName="price">
+                  <mat-error *ngIf="addNewAssetGroup.controls['price'].invalid">
+                    Select price for the new asset
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-6 form-container">
+                <mat-form-field appearance="outline">
+                  <mat-label>Asset Date</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="dp3"
+                    formControlName="date">
+                  <mat-error *ngIf="addNewAssetGroup.controls['date'].invalid">
+                    Pick a date for the new asset
+                  </mat-error>
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="dp3">
+                  </mat-datepicker-toggle>
+                  <mat-datepicker
+                    #dp3
+                    disabled="false">
+                  </mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <!--SUBMIT-->
+            <div class="row mb-3">
+              <div class="col-12 form-container justify-content-end">
+                <button mat-raised-button
+                        type="submit"
+                        color="accent"
+                        [disabled]="!addNewAssetGroup.valid"
+                        (click)="expansionPanel.close()">Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </mat-expansion-panel>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-data-table></app-data-table>
+    </div>
+  </div>
+</div>
