@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 
 import {RecordsRoutingModule} from './records-routing.module';
 import {RecordsComponent} from './records/records.component';
+import {MaterialModule} from '../../Material/material.module';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import {RecordsComponent} from './records/records.component';
   ],
   imports: [
     CommonModule,
+    MaterialModule,
     RecordsRoutingModule
   ]
 })

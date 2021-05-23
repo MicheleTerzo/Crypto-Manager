@@ -9,7 +9,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './Material/material.module';
 import {DashboardComponent} from './Features/dashboard/dashboard.component';
 import {CoinValueComponent} from './Core/coin-value/coin-value.component';
-import {RecordsComponent} from './Features/records/records/records.component';
 
 
 @NgModule({
@@ -17,7 +16,7 @@ import {RecordsComponent} from './Features/records/records/records.component';
     AppComponent,
     DashboardComponent,
     CoinValueComponent,
-    RecordsComponent,
+
 
   ],
   imports: [

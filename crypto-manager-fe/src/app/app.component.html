@@ -3,21 +3,21 @@
   <mat-sidenav mode="push" #sidenav>
     <div class="sidenav-list-container">
       <mat-action-list>
-        <button mat-list-item routerLink="Dashboard">
+        <button mat-list-item routerLink="Dashboard" (click)="sidenav.close()">
           <mat-icon color="accent">dashboard</mat-icon>
-          <p>Dashboard</p>
+          Dashboard
         </button>
-        <button mat-list-item routerLink="Records">
+        <button mat-list-item routerLink="Records" (click)="sidenav.close()">
           <mat-icon color="accent">account_balance_wallet</mat-icon>
-          <p>Records</p>
+          Records
         </button>
-        <button mat-list-item routerLink="Charts">
+        <button mat-list-item routerLink="Charts" (click)="sidenav.close()">
           <mat-icon color="accent">insights</mat-icon>
-          <p>Charts</p>
+          Charts
         </button>
-        <button mat-list-item routerLink="News">
+        <button mat-list-item routerLink="News" (click)="sidenav.close()">
           <mat-icon color="accent">feed</mat-icon>
-          <p>News</p>
+          News
         </button>
       </mat-action-list>
     </div>
