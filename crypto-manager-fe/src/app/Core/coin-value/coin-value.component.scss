@@ -1,0 +1,27 @@
+.coinvalue {
+  &__container {
+    border-bottom: 1px solid gray;
+  }
+
+  &__stat {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid gray;
+
+    &--price {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+.growth {
+  color: forestgreen;
+}
+
+.degrowth {
+  color: firebrick;
+}
