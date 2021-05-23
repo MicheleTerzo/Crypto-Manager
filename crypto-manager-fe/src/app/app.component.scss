@@ -1,0 +1,20 @@
+.nav-bar {
+  &__left {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__right {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.sidenav-list-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}

@@ -7,21 +7,18 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './Material/material.module';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {NavBarComponent} from './nav-bar/nav-bar.component';
-import {WalletComponent} from './wallet/wallet.component';
-import {BuyHistoryComponent} from './buy-history/buy-history.component';
-import { DataTableComponent } from './buy-history/data-table/data-table.component';
+import {DashboardComponent} from './Features/dashboard/dashboard.component';
+import {CoinValueComponent} from './Core/coin-value/coin-value.component';
+import {RecordsComponent} from './Features/records/records/records.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    NavBarComponent,
-    WalletComponent,
-    BuyHistoryComponent,
-    DataTableComponent
+    CoinValueComponent,
+    RecordsComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -41,18 +41,55 @@ html, body {
 }
 
 body {
-  background-color: #223845 ;
-  color: #FFF;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
 }
-mat-form-field{
+
+h1, h2, h3, h4, h5, h6, p, ul, li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+//MATERIAL CUSTOMIZATION
+
+mat-form-field {
   width: 100%;
   //.mat-form-field-wrapper{
   //  padding: 0;
   //}
 }
 
-table{
+mat-sidenav-container {
+  height: 100vh;
+
+  mat-sidenav-content {
+    background-color: #223845 !important;
+    color: #FFF !important;
+  }
+
+  mat-sidenav {
+    background-color: #223845 !important;
+    color: #FFF !important;
+    width: 15vw;
+  }
+}
+
+mat-action-list {
+  height: 50%;
+  width: 100%;
+
+  button {
+    p {
+      color: #FFF;
+      margin-left: 10px !important;
+    }
+  }
+}
+
+table {
   width: 100%;
 }
+
+
+

@@ -1,2 +1,46 @@
-<app-nav-bar></app-nav-bar>
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <!--SIDENAV-->
+  <mat-sidenav mode="push" #sidenav>
+    <div class="sidenav-list-container">
+      <mat-action-list>
+        <button mat-list-item routerLink="Dashboard">
+          <mat-icon color="accent">dashboard</mat-icon>
+          <p>Dashboard</p>
+        </button>
+        <button mat-list-item routerLink="Records">
+          <mat-icon color="accent">account_balance_wallet</mat-icon>
+          <p>Records</p>
+        </button>
+        <button mat-list-item routerLink="Charts">
+          <mat-icon color="accent">insights</mat-icon>
+          <p>Charts</p>
+        </button>
+        <button mat-list-item routerLink="News">
+          <mat-icon color="accent">feed</mat-icon>
+          <p>News</p>
+        </button>
+      </mat-action-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!--TOOLBAR-->
+    <mat-toolbar color="primary">
+      <div class="container-fluid nav-bar">
+        <div class="row">
+          <div class="col-6 nav-bar__left">
+            <button mat-mini-fab (click)="sidenav.open()">
+              <mat-icon>menu</mat-icon>
+            </button>
+          </div>
+          <div class="col-6 nav-bar__right">
+            <h3>Crypto Manager</h3>
+          </div>
+        </div>
+      </div>
+    </mat-toolbar>
+    <app-coin-value></app-coin-value>
+    <!--CONTENUTO IN PAGINA-->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
