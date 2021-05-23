@@ -1,35 +1,39 @@
 <div class="container mt-5">
+<div class="row">
+
+</div>
   <div class="row">
     <div class="col-12">
-      <table mat-table [dataSource]="recordsData$ | async">
+      <table mat-table matSort [dataSource]="data">
 
         <!-- ASSET NAME -->
-        <ng-container matColumnDef="assetName">
-          <th mat-header-cell *matHeaderCellDef>Asset Name</th>
-          <td mat-cell *matCellDef="let crypto">{{crypto.assetName}}</td>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Asset Name</th>
+          <td mat-cell *matCellDef="let crypto">{{crypto.name}}</td>
         </ng-container>
 
         <!-- QUANTITY -->
         <ng-container matColumnDef="qty">
-          <th mat-header-cell *matHeaderCellDef>Quantity</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
           <td mat-cell *matCellDef="let crypto">{{crypto.qty}}</td>
         </ng-container>
 
         <!-- BUY PRICE -->
         <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef>Buy price</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Buy price</th>
           <td mat-cell *matCellDef="let crypto">{{crypto.price}}</td>
         </ng-container>
 
         <!-- DATE -->
         <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
           <td mat-cell *matCellDef="let crypto">{{crypto.date}}</td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
   </div>
 </div>

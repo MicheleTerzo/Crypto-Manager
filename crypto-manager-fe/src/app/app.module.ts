@@ -9,6 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './Material/material.module';
 import {DashboardComponent} from './Features/dashboard/dashboard.component';
 import {CoinValueComponent} from './Core/coin-value/coin-value.component';
+import { WalletValueComponent } from './Shared/wallet-value/wallet-value.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {CoinValueComponent} from './Core/coin-value/coin-value.component';
     AppComponent,
     DashboardComponent,
     CoinValueComponent,
+    WalletValueComponent,
 
 
   ],

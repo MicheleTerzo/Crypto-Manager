@@ -8,8 +8,10 @@ import {IWalletData} from '../Interfaces/iwallet-data';
 })
 export class RecordsDataService {
 
+
   constructor(private http: HttpClient) {
   }
+
 
   getRecordsData(): Observable<IWalletData[]> {
     return this.http.get<IWalletData[]>('assets/MOCK_DATA.json');

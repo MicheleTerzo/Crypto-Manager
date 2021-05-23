@@ -1,6 +1,6 @@
 export interface IWalletData {
-  assetName: string;
+  name: string;
   qty: number;
   price: number;
-  date: Date;
+  date: string;
 }

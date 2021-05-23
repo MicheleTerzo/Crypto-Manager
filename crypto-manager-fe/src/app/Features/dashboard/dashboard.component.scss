@@ -28,9 +28,9 @@
     width: 100%;
 
     &__details {
-      align-items: center;
+      align-items: flex-start;
       display: flex;
-      font-size: 4rem;
+      flex-direction: column;
       justify-content: center;
     }
   }

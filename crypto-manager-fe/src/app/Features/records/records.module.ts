@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import {RecordsRoutingModule} from './records-routing.module';
 import {RecordsComponent} from './records/records.component';
 import {MaterialModule} from '../../Material/material.module';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {MaterialModule} from '../../Material/material.module';
   imports: [
     CommonModule,
     MaterialModule,
-    RecordsRoutingModule
+    RecordsRoutingModule,
+    FormsModule
   ]
 })
 export class RecordsModule {
