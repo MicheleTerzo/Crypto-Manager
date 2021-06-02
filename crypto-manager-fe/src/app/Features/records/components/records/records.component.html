@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-12">
-      <table mat-table [dataSource]="recordsData$ | async">
+      <table mat-table [dataSource]="dataSource">
 
         <!-- ASSET NAME -->
         <ng-container matColumnDef="assetName">
@@ -30,6 +30,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" #paginator></mat-paginator>
     </div>
   </div>
 </div>

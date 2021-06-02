@@ -38,6 +38,7 @@ export class CoinValueComponent implements OnInit {
     }
   ];
 
+
   constructor() {
   }
 
