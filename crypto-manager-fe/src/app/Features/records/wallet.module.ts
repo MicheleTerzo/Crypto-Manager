@@ -1,20 +1,20 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {RecordsRoutingModule} from './records-routing.module';
+import {WalletRoutingModule} from './wallet-routing.module';
 import {MaterialModule} from '../../Material/material.module';
-import {RecordsComponent} from './components/records/records.component';
+import {WalletComponent} from './components/wallet/wallet.component';
 
 
 @NgModule({
   declarations: [
-    RecordsComponent
+    WalletComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
-    RecordsRoutingModule
+    WalletRoutingModule
   ]
 })
-export class RecordsModule {
+export class WalletModule {
 }

@@ -8,16 +8,13 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './Material/material.module';
 import {DashboardComponent} from './Features/dashboard/dashboard.component';
-import {CoinValueComponent} from './Core/coin-value/coin-value.component';
-import {NewsComponent} from './Features/news/news.component';
+import {SharedModule} from './shared/shared.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    CoinValueComponent,
-    NewsComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +22,8 @@ import {NewsComponent} from './Features/news/news.component';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

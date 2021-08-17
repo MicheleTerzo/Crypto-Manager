@@ -1,20 +1,26 @@
-.nav-bar {
-  &__left {
-    align-items: center;
-    display: flex;
-    justify-content: flex-start;
-  }
+.main-content {
+  padding: 20px;
 
-  &__right {
-    align-items: center;
-    display: flex;
-    justify-content: flex-end;
+  .content-window {
+    padding: 20px;
+    border: 1px solid var(--white-text);
+    border-radius: 16px;
   }
 }
 
-.sidenav-list-container {
+.sidenav-logo {
   align-items: center;
   display: flex;
+  height: 20vh;
   justify-content: center;
-  height: 100%;
+}
+
+.sidenav-menu {
+  align-items: flex-start;
+  display: flex;
+  height: 80vh;
+
+  .sidenav-item-text {
+    color: var(--white-text);
+  }
 }

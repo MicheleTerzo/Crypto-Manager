@@ -1,46 +1,31 @@
-<mat-sidenav-container>
-  <!--SIDENAV-->
-  <mat-sidenav mode="push" #sidenav>
-    <div class="sidenav-list-container">
+<mat-sidenav-container class="example-container">
+
+  <mat-sidenav #sidenav mode="push">
+    <div class="sidenav-logo">
+      <h1>CM</h1>
+    </div>
+    <div class="sidenav-menu">
       <mat-action-list>
-        <button mat-list-item routerLink="Dashboard" (click)="sidenav.close()">
-          <mat-icon color="accent">dashboard</mat-icon>
-          <p>Dashboard</p>
-        </button>
-        <button mat-list-item routerLink="Records" (click)="sidenav.close()">
-          <mat-icon color="accent">account_balance_wallet</mat-icon>
-          <p>Records</p>
-        </button>
-        <button mat-list-item routerLink="Charts" (click)="sidenav.close()">
-          <mat-icon color="accent">insights</mat-icon>
-          <p>Charts</p>
-        </button>
-        <button mat-list-item routerLink="News" (click)="sidenav.close()">
-          <mat-icon color="accent">feed</mat-icon>
-          <p>News</p>
+        <button (click)="sidenav.close()" *ngFor="let menuConfig of sideNavConfig" [routerLink]="menuConfig.routeLink"
+                mat-list-item>
+          <mat-icon class="ml-3" color="accent">
+            {{menuConfig.icon}}
+          </mat-icon>
+          <span class="sidenav-item-text">
+            {{menuConfig.displayValue}}
+          </span>
         </button>
       </mat-action-list>
     </div>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <!--TOOLBAR-->
-    <mat-toolbar color="primary">
-      <div class="container-fluid nav-bar">
-        <div class="row">
-          <div class="col-6 nav-bar__left">
-            <button mat-mini-fab (click)="sidenav.open()">
-              <mat-icon>menu</mat-icon>
-            </button>
-          </div>
-          <div class="col-6 nav-bar__right">
-            <h3>Crypto Manager</h3>
-          </div>
-        </div>
-      </div>
-    </mat-toolbar>
-    <app-coin-value></app-coin-value>
-    <!--CONTENUTO IN PAGINA-->
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
 
+  <mat-sidenav-content>
+    <app-navbar (sidenavEmitter)="sidenav.toggle()"></app-navbar>
+    <div class="main-content">
+      <div class="content-window">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

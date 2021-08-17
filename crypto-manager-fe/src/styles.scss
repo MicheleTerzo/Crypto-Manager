@@ -33,7 +33,7 @@ $crypto-manager-fe-theme: mat-light-theme((
 @include angular-material-theme($crypto-manager-fe-theme);
 
 @import "~bootstrap/dist/css/bootstrap.css";
-
+@import "style/main";
 /* You can add global styles to this file, and also import other style files */
 
 html, body {
@@ -55,7 +55,8 @@ h1, h2, h3, h4, h5, h6, p, ul, li {
 
 mat-form-field {
   width: 100%;
-  .mat-form-field-wrapper{
+
+  .mat-form-field-wrapper {
     padding: 0;
   }
 }
