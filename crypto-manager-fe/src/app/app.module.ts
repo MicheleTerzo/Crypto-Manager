@@ -9,7 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './Material/material.module';
 import {DashboardComponent} from './Features/dashboard/dashboard.component';
 import {SharedModule} from './shared/shared.module';
-
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import {SharedModule} from './shared/shared.module';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

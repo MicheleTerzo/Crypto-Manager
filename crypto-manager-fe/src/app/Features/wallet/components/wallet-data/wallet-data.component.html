@@ -1,0 +1,16 @@
+<div class="container-fluid p-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="chart-wrapper">
+        <canvas [chartType]="barChartType"
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [legend]="barChartLegend"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                baseChart>
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
