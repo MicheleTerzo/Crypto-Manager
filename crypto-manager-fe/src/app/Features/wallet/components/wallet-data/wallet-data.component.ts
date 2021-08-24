@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
+import {IAccountData} from '../../../../interfaces/iaccount-data';
 
 @Component({
   selector: 'app-wallet-data',
@@ -8,6 +9,9 @@ import {Label} from 'ng2-charts';
   styleUrls: ['./wallet-data.component.scss']
 })
 export class WalletDataComponent implements OnInit {
+
+  @Input() accountsData: IAccountData[] = [];
+  @Input() rates: any[];
 
   barChartOptions: ChartOptions = {
     responsive: true,

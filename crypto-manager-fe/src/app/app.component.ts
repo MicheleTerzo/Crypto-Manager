@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SidenavMenuConfiguration} from './interfaces/sidenav-menu-configuration';
+import {IsidenavMenuConfiguration} from './interfaces/isidenav-menu-configuration';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import {SidenavMenuConfiguration} from './interfaces/sidenav-menu-configuration'
 })
 export class AppComponent implements OnInit {
 
-  sideNavConfig: SidenavMenuConfiguration[] = [
+  sideNavConfig: IsidenavMenuConfiguration[] = [
     {
       displayValue: 'Dashboard',
       icon: 'dashboard',

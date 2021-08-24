@@ -7,12 +7,15 @@
   <div class="row">
     <div class="col-12 d-flex justify-content-start align-items-center">
       <mat-tab-group color="accent">
+        <!--TAB 1-->
         <mat-tab label="Wallet Data">
-          <app-wallet-data></app-wallet-data>
+          <app-wallet-data [accountsData]="accountData | async" [rates]="rates | async"></app-wallet-data>
         </mat-tab>
+        <!--TAB 2-->
         <mat-tab label="History">
           <app-wallet-history></app-wallet-history>
         </mat-tab>
+
       </mat-tab-group>
 
     </div>

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {UserDataService} from '../../Services/user-data.service';
 
 
 @Component({
@@ -9,13 +10,12 @@ import {Component, OnInit} from '@angular/core';
 export class DashboardComponent implements OnInit {
 
 
-  constructor() {
+  constructor(private userDataService: UserDataService) {
   }
 
   ngOnInit(): void {
 
   }
-
 
 
 }

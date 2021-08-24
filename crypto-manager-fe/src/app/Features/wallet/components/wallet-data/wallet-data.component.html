@@ -1,16 +1,37 @@
 <div class="container-fluid p-5">
   <div class="row">
-    <div class="col-12">
-      <div class="chart-wrapper">
-        <canvas [chartType]="barChartType"
-                [datasets]="barChartData"
-                [labels]="barChartLabels"
-                [legend]="barChartLegend"
-                [options]="barChartOptions"
-                [plugins]="barChartPlugins"
-                baseChart>
-        </canvas>
+    <!--    <div class="col-12">-->
+    <!--      <div class="chart-wrapper">-->
+    <!--        <canvas [chartType]="barChartType"-->
+    <!--                [datasets]="barChartData"-->
+    <!--                [labels]="barChartLabels"-->
+    <!--                [legend]="barChartLegend"-->
+    <!--                [options]="barChartOptions"-->
+    <!--                [plugins]="barChartPlugins"-->
+    <!--                baseChart>-->
+    <!--        </canvas>-->
+    <!--      </div>-->
+    <!--    </div>-->
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row asset-row p-3 mb-3" *ngFor="let account of accountsData; let i = index">
+    <div class="col-6 d-flex flex-column justify-content-center align-items-start">
+      <div>
+        <p>
+          {{account.currency.name}}
+        </p>
       </div>
+      <div>
+        <p style="color:{{account.currency.color}}">
+          {{account.currency.code}}
+        </p>
+      </div>
+    </div>
+    <div class="col-3">
+      <p>
+        {{account.balance.amount}}
+      </p>
     </div>
   </div>
 </div>

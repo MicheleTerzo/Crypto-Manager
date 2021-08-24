@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -10,6 +10,7 @@ import {MaterialModule} from './Material/material.module';
 import {DashboardComponent} from './Features/dashboard/dashboard.component';
 import {SharedModule} from './shared/shared.module';
 import {ChartsModule} from 'ng2-charts';
+import {ProfileAuthInterceptor} from './interceptors/profile-auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import {ChartsModule} from 'ng2-charts';
     SharedModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ProfileAuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
