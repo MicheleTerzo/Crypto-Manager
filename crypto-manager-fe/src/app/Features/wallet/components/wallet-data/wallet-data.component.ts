@@ -17,16 +17,19 @@ export class WalletDataComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.accountsDataCache = this.accountsData;
-    this.walletValueCache = this.walletValue;
   }
+
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.accountsData && changes.accountsData) {
-      this.accountsDataCache = changes.accountsData.previousValue;
+      if (changes.accountsData.previousValue) {
+        this.accountsDataCache = changes.accountsData.previousValue;
+      }
     }
     if (this.walletValue && changes.walletValue) {
-      this.walletValueCache = changes.walletValue.previousValue;
+      if (changes.walletValue.previousValue) {
+        this.walletValueCache = changes.walletValue.previousValue;
+      }
     }
   }
 
