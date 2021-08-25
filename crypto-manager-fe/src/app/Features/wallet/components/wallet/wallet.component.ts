@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserDataService} from '../../../../Services/user-data.service';
 import {Observable} from 'rxjs';
 import {WalletDataService} from '../../services/wallet-data.service';
-import {map} from 'rxjs/operators';
+import {IAccountData} from '../../../../interfaces/iaccount-data';
 
 @Component({
   selector: 'app-records',
@@ -10,7 +10,7 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./wallet.component.scss']
 })
 export class WalletComponent implements OnInit {
-  accountData: Observable<any>;
+  accountData: Observable<IAccountData[]>;
   rates: Observable<{ currency: string, EUR: number }[]>;
 
 
@@ -18,16 +18,7 @@ export class WalletComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountData = this.userDataService.userData$.pipe(
-      map((accountsData) => {
-        if (accountsData) {
-          accountsData.forEach((crypto) => {
-            this.walletDataService.getExchangeRates(crypto.currency.code);
-          });
-        }
-        return accountsData;
-      }),
-    );
+    this.accountData = this.userDataService.userData$;
     this.userDataService.getAccountData();
     this.rates = this.walletDataService.exchangeRates$;
   }

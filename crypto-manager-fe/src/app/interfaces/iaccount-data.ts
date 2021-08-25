@@ -16,4 +16,6 @@ export interface IAccountData {
   'resource_path': string;
   'allow_deposits': boolean;
   'allow_withdrawals': boolean;
+  'exchangeRate': number;
+  'totalValue': number;
 }

@@ -15,8 +15,22 @@
   </div>
 </div>
 <div class="container-fluid">
+  <div class="row asset-row p-3 mb-3">
+    <div class="col-3 d-flex justify-content-start align-items-center">
+      Asset Name
+    </div>
+    <div class="col-3 d-flex justify-content-center align-items-center">
+      Amount Hold
+    </div>
+    <div class="col-3 d-flex justify-content-center align-items-center">
+      Value per unit
+    </div>
+    <div class="col-3 d-flex justify-content-center align-items-center">
+      Total wallet value
+    </div>
+  </div>
   <div class="row asset-row p-3 mb-3" *ngFor="let account of accountsData; let i = index">
-    <div class="col-6 d-flex flex-column justify-content-center align-items-start">
+    <div class="col-3 d-flex flex-column justify-content-center align-items-start">
       <div>
         <p>
           {{account.currency.name}}
@@ -28,10 +42,16 @@
         </p>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-3 d-flex justify-content-center align-items-center">
       <p>
         {{account.balance.amount}}
       </p>
+    </div>
+    <div class="col-3 d-flex justify-content-center align-items-center">
+      {{account.exchangeRate | number: '1.2-2'}}€
+    </div>
+    <div class="col-3 d-flex justify-content-center align-items-center">
+      {{account.totalValue | number: '1.2-2'}}€
     </div>
   </div>
 </div>
