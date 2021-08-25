@@ -11,47 +11,52 @@
 <div class="container-fluid">
   <div class="row asset-row p-3 mb-3">
     <div class="col-3 d-flex justify-content-start align-items-center">
-      Asset Name
+      <p>Asset Name</p>
     </div>
     <div class="col-3 d-flex justify-content-center align-items-center">
-      Amount Hold
+      <p class="me-3">Amount Hold</p>
     </div>
     <div class="col-3 d-flex justify-content-center align-items-center">
-      Value per unit
+      <p class="me-3">Value per unit</p>
     </div>
     <div class="col-3 d-flex justify-content-center align-items-center">
-      Total wallet value
+      <p class="me-5">Total wallet value</p>
     </div>
   </div>
-  <div class="row asset-row p-3 mb-3" *ngFor="let account of accountsData; let i = index">
-    <div class="col-3 d-flex flex-column justify-content-center align-items-start">
-      <div>
-        <p>
-          {{account.currency.name}}
-        </p>
+  <mat-expansion-panel class="asset-row p-3 mb-3"
+                       *ngFor="let account of accountsData; let i = index">
+    <mat-expansion-panel-header>
+      <div class="row " style="width: 100%;">
+        <div class="col-3 d-flex flex-column justify-content-center align-items-start">
+          <div>
+            <p>
+              {{account.currency.name}}
+            </p>
+          </div>
+          <div>
+            <p style="color:{{account.currency.color}}">
+              {{account.currency.code}}
+            </p>
+          </div>
+        </div>
+        <div class="col-3 d-flex justify-content-center align-items-center">
+          <p>
+            {{account.balance.amount}}
+          </p>
+        </div>
+        <div class="col-3 d-flex justify-content-center align-items-center">
+          <p
+            [class]="{'down': account.exchangeRate < accountsDataCache[i]?.exchangeRate, 'up': account.exchangeRate > accountsDataCache[i]?.exchangeRate, 'flat': account.exchangeRate === accountsDataCache[i]?.exchangeRate }">
+            {{account.exchangeRate | number: '1.2-2'}}€
+          </p>
+        </div>
+        <div class="col-3 d-flex justify-content-center align-items-center">
+          <p
+            [class]="{'down': account.totalValue < accountsDataCache[i]?.totalValue, 'up': account.totalValue > accountsDataCache[i]?.totalValue, 'flat': account.totalValue === accountsDataCache[i]?.totalValue }">
+            {{account.totalValue | number: '1.2-2'}}€
+          </p>
+        </div>
       </div>
-      <div>
-        <p style="color:{{account.currency.color}}">
-          {{account.currency.code}}
-        </p>
-      </div>
-    </div>
-    <div class="col-3 d-flex justify-content-center align-items-center">
-      <p>
-        {{account.balance.amount}}
-      </p>
-    </div>
-    <div class="col-3 d-flex justify-content-center align-items-center">
-      <p
-        [class]="{'down': account.exchangeRate < accountsDataCache[i]?.exchangeRate, 'up': account.exchangeRate > accountsDataCache[i]?.exchangeRate, 'flat': account.exchangeRate === accountsDataCache[i]?.exchangeRate }">
-        {{account.exchangeRate | number: '1.2-2'}}€
-      </p>
-    </div>
-    <div class="col-3 d-flex justify-content-center align-items-center">
-      <p
-        [class]="{'down': account.totalValue < accountsDataCache[i]?.totalValue, 'up': account.totalValue > accountsDataCache[i]?.totalValue, 'flat': account.totalValue === accountsDataCache[i]?.totalValue }">
-        {{account.totalValue | number: '1.2-2'}}€
-      </p>
-    </div>
-  </div>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
 </div>
