@@ -3,6 +3,7 @@ import {UserDataService} from '../../../../Services/user-data.service';
 import {Observable} from 'rxjs';
 import {WalletDataService} from '../../services/wallet-data.service';
 import {IAccountData} from '../../../../interfaces/iaccount-data';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-records',
@@ -11,27 +12,22 @@ import {IAccountData} from '../../../../interfaces/iaccount-data';
 })
 export class WalletComponent implements OnInit {
   accountData: Observable<IAccountData[]>;
-  rates: Observable<{ currency: string, EUR: number }[]>;
+  walletValue = 0;
 
 
   constructor(private userDataService: UserDataService, private walletDataService: WalletDataService) {
   }
 
   ngOnInit(): void {
-    this.accountData = this.userDataService.userData$;
+    this.accountData = this.userDataService.userData$.pipe(map((accountsData) => {
+      this.walletValue = 0;
+      if (accountsData) {
+        accountsData.forEach(account => {
+          this.walletValue += account.totalValue;
+        });
+      }
+      return accountsData;
+    }));
     this.userDataService.getAccountData();
-    this.rates = this.walletDataService.exchangeRates$;
   }
-
-
-//   flatMap((docs) => docs),
-//   concatMap((doc) => {
-//   return this.keycloakGroupService.getUserById(doc.author)
-// .pipe(map((user) => {
-//   doc.author = user.username;
-//   return doc;
-// }));
-// }),
-// toArray(),
-
 }

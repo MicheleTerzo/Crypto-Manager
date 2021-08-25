@@ -20,27 +20,33 @@ export class UserDataService {
   }
 
   getAccountData(): void {
-    setInterval(() => {
-      this.http.get<IuserAccounts>('https://api.coinbase.com/v2/accounts?&limit=100')
-        .pipe(
-          map((data) => {
-            return data.data.filter((account) => {
-              return parseFloat(account.balance.amount) !== 0;
-            });
-          })
-        ).pipe(
-        flatMap((accountsData) => accountsData),
-        concatMap((account) => {
-          return this.walletDataService.getExchangeRates(account.currency.code).pipe(map((el: any) => {
-            const currentValue = el.data.rates.EUR * parseFloat(account.balance.amount);
-            const editedAccount = {...account, exchangeRate: el.data.rates.EUR, totalValue: currentValue};
-            return editedAccount;
-          }));
-        }),
-        toArray()
-      ).forEach((response) => {
-        this._userData.next(response);
-      });
-    }, 30000);
+    this.http.get<IuserAccounts>('https://api.coinbase.com/v2/accounts?&limit=100')
+      .pipe(
+        map((data) => {
+          return data.data.filter((account) => {
+            return parseFloat(account.balance.amount) !== 0;
+          });
+        })
+      ).pipe(
+      flatMap((accountsData) => accountsData),
+      concatMap((account) => {
+        return this.walletDataService.getExchangeRates(account.currency.code).pipe(map((el: any) => {
+          const currentValue = el.data.rates.EUR * parseFloat(account.balance.amount);
+          const editedAccount = {...account, exchangeRate: el.data.rates.EUR, totalValue: currentValue};
+          return editedAccount;
+        }));
+      }),
+      toArray()
+    ).forEach((response) => {
+      this._userData.next(response);
+      this.updateAccountData();
+    });
   }
+
+  private updateAccountData(): void {
+    setTimeout(() => {
+      this.getAccountData();
+    }, 5000);
+  }
+
 }

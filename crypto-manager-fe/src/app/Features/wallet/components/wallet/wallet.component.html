@@ -9,7 +9,8 @@
       <mat-tab-group color="accent">
         <!--TAB 1-->
         <mat-tab label="Wallet Data">
-          <app-wallet-data [accountsData]="accountData | async" [rates]="rates | async"></app-wallet-data>
+          <app-wallet-data [accountsData]="accountData | async" [walletValue]="walletValue">
+          </app-wallet-data>
         </mat-tab>
         <!--TAB 2-->
         <mat-tab label="History">

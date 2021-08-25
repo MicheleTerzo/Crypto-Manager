@@ -1,17 +1,11 @@
 <div class="container-fluid p-5">
   <div class="row">
-    <!--    <div class="col-12">-->
-    <!--      <div class="chart-wrapper">-->
-    <!--        <canvas [chartType]="barChartType"-->
-    <!--                [datasets]="barChartData"-->
-    <!--                [labels]="barChartLabels"-->
-    <!--                [legend]="barChartLegend"-->
-    <!--                [options]="barChartOptions"-->
-    <!--                [plugins]="barChartPlugins"-->
-    <!--                baseChart>-->
-    <!--        </canvas>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <div class="col-12">
+      <h1
+        [class]="{'down': walletValue < walletValueCache, 'up': walletValue > walletValueCache, 'flat': walletValue === walletValueCache }">
+        {{walletValue | number: '1.2-2'}}
+      </h1>
+    </div>
   </div>
 </div>
 <div class="container-fluid">
@@ -48,10 +42,16 @@
       </p>
     </div>
     <div class="col-3 d-flex justify-content-center align-items-center">
-      {{account.exchangeRate | number: '1.2-2'}}€
+      <p
+        [class]="{'down': account.exchangeRate < accountsDataCache[i]?.exchangeRate, 'up': account.exchangeRate > accountsDataCache[i]?.exchangeRate, 'flat': account.exchangeRate === accountsDataCache[i]?.exchangeRate }">
+        {{account.exchangeRate | number: '1.2-2'}}€
+      </p>
     </div>
     <div class="col-3 d-flex justify-content-center align-items-center">
-      {{account.totalValue | number: '1.2-2'}}€
+      <p
+        [class]="{'down': account.totalValue < accountsDataCache[i]?.totalValue, 'up': account.totalValue > accountsDataCache[i]?.totalValue, 'flat': account.totalValue === accountsDataCache[i]?.totalValue }">
+        {{account.totalValue | number: '1.2-2'}}€
+      </p>
     </div>
   </div>
 </div>

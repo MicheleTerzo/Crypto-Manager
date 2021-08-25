@@ -1,6 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
-import {Label} from 'ng2-charts';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {IAccountData} from '../../../../interfaces/iaccount-data';
 
 @Component({
@@ -8,25 +6,28 @@ import {IAccountData} from '../../../../interfaces/iaccount-data';
   templateUrl: './wallet-data.component.html',
   styleUrls: ['./wallet-data.component.scss']
 })
-export class WalletDataComponent implements OnInit {
+export class WalletDataComponent implements OnInit, OnChanges {
 
   @Input() accountsData: IAccountData[] = [];
-  @Input() rates: any[];
-
-  barChartOptions: ChartOptions = {
-    responsive: true,
-  };
-  barChartLabels: Label[] = ['Apple', 'Banana', 'Kiwifruit', 'Blueberry', 'Orange', 'Grapes'];
-  barChartType: ChartType = 'line';
-  barChartLegend = true;
-  barChartPlugins = [];
-  barChartData: ChartDataSets[] = [
-    {data: [45, 37, 60, 70, 46, 33], label: 'Best Fruits'}
-  ];
+  accountsDataCache: IAccountData[] = [];
+  @Input() walletValue = 0;
+  walletValueCache = 0;
 
   constructor() {
   }
 
   ngOnInit(): void {
+    this.accountsDataCache = this.accountsData;
+    this.walletValueCache = this.walletValue;
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.accountsData && changes.accountsData) {
+      this.accountsDataCache = changes.accountsData.previousValue;
+    }
+    if (this.walletValue && changes.walletValue) {
+      this.walletValueCache = changes.walletValue.previousValue;
+    }
+  }
+
 }

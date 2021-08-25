@@ -1,5 +1,61 @@
-.asset-row{
+.asset-row {
   border-radius: 16px;
   background-color: var(--primary-color);
   box-shadow: 0 0 4px 2px var(--accent-color);
+}
+
+.down {
+  color: var(--light-primary-text);
+  animation-name: down;
+  animation-duration: 2s;
+}
+
+@keyframes down {
+  0% {
+    color: var(--light-primary-text)
+  }
+  50% {
+    color: var(--down)
+  }
+  0% {
+    color: var(--light-primary-text)
+  }
+}
+
+.up {
+  color: var(--light-primary-text);
+  animation-name: up;
+  animation-duration: 2s;
+
+}
+
+@keyframes up {
+  0% {
+    color: var(--light-primary-text)
+  }
+  50% {
+    color: var(--up)
+  }
+  0% {
+    color: var(--light-primary-text)
+  }
+}
+
+.flat {
+  color: var(--light-primary-text);
+  animation-name: flat;
+  animation-duration: 2s;
+
+}
+
+@keyframes flat {
+  0% {
+    color: var(--light-primary-text)
+  }
+  50% {
+    color: var(--flat)
+  }
+  0% {
+    color: var(--light-primary-text)
+  }
 }
