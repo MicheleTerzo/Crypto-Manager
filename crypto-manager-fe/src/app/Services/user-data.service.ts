@@ -46,7 +46,7 @@ export class UserDataService {
   private updateAccountData(): void {
     setTimeout(() => {
       this.getAccountData();
-    }, 5000);
+    }, 60000);
   }
 
 }
