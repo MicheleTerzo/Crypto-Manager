@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {UserDataService} from '../../../../Services/user-data.service';
 import {Observable} from 'rxjs';
 import {WalletDataService} from '../../services/wallet-data.service';
 import {IAccountData} from '../../../../interfaces/iaccount-data';
@@ -15,11 +14,11 @@ export class WalletComponent implements OnInit {
   walletValue = 0;
 
 
-  constructor(private userDataService: UserDataService, private walletDataService: WalletDataService) {
+  constructor(private walletDataService: WalletDataService) {
   }
 
   ngOnInit(): void {
-    this.accountData = this.userDataService.userData$.pipe(map((accountsData) => {
+    this.accountData = this.walletDataService.userData$.pipe(map((accountsData) => {
       this.walletValue = 0;
       if (accountsData) {
         accountsData.forEach(account => {
@@ -28,6 +27,6 @@ export class WalletComponent implements OnInit {
       }
       return accountsData;
     }));
-    this.userDataService.getAccountData();
+    this.walletDataService.getAccountData();
   }
 }

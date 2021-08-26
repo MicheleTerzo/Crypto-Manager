@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {WalletDataService} from '../../services/wallet-data.service';
 
 @Component({
   selector: 'app-wallet-history',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WalletHistoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private walletDataService: WalletDataService) {
+  }
 
   ngOnInit(): void {
+    this.walletDataService.getTransactions();
   }
 
 }

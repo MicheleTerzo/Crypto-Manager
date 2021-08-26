@@ -2,12 +2,16 @@
   border-radius: 16px;
   background-color: var(--primary-color);
   box-shadow: 0 0 4px 2px var(--accent-color);
+
+  mat-icon {
+    font-size: 30px;
+  }
 }
 
 .down {
   color: var(--light-primary-text);
   animation-name: down;
-  animation-duration: 2s;
+  animation-duration: 4s;
 }
 
 @keyframes down {
@@ -25,7 +29,7 @@
 .up {
   color: var(--light-primary-text);
   animation-name: up;
-  animation-duration: 2s;
+  animation-duration: 4s;
 
 }
 
@@ -44,7 +48,7 @@
 .flat {
   color: var(--light-primary-text);
   animation-name: flat;
-  animation-duration: 2s;
+  animation-duration: 4s;
 
 }
 
@@ -59,3 +63,13 @@
     color: var(--light-primary-text)
   }
 }
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 93vw;
+  height: 50vh;
+}
+
+

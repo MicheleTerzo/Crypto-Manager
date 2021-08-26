@@ -13,6 +13,9 @@ export class WalletDataComponent implements OnInit, OnChanges {
   @Input() walletValue = 0;
   walletValueCache = 0;
 
+
+  displayedColumns: string[] = ['assetName', 'amountHold', 'amountPerUnit', 'totalAmount'];
+
   constructor() {
   }
 
@@ -32,5 +35,6 @@ export class WalletDataComponent implements OnInit, OnChanges {
       }
     }
   }
+
 
 }

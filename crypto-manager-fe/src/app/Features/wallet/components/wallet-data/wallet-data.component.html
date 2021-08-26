@@ -1,32 +1,54 @@
-<div class="container-fluid p-5">
+<div class="spinner-container" *ngIf="!accountsData">
+  <mat-spinner color="accent"></mat-spinner>
+</div>
+
+<div class="container-fluid p-5" *ngIf="accountsData">
   <div class="row">
-    <div class="col-12">
-      <h1
-        [class]="{'down': walletValue < walletValueCache, 'up': walletValue > walletValueCache, 'flat': walletValue === walletValueCache }">
-        {{walletValue | number: '1.2-2'}}
+    <div class="col-4 asset-row p-5 mb-5"
+         [class]="{
+         'down': walletValue < walletValueCache,
+         'up': walletValue > walletValueCache,
+         'flat': walletValue === walletValueCache
+         }">
+
+      <h1>
+        Current balance
       </h1>
+
+      <h1>
+        {{walletValue | number: '1.2-2'}}€
+      </h1>
+
     </div>
   </div>
 </div>
-<div class="container-fluid">
-  <div class="row asset-row p-3 mb-3">
-    <div class="col-3 d-flex justify-content-start align-items-center">
-      <p>Asset Name</p>
-    </div>
-    <div class="col-3 d-flex justify-content-center align-items-center">
-      <p class="me-3">Amount Hold</p>
-    </div>
-    <div class="col-3 d-flex justify-content-center align-items-center">
-      <p class="me-3">Value per unit</p>
-    </div>
-    <div class="col-3 d-flex justify-content-center align-items-center">
-      <p class="me-5">Total wallet value</p>
-    </div>
-  </div>
+
+<div class="container-fluid" *ngIf="accountsData">
+  <mat-expansion-panel class="asset-row p-3 mb-3" [disabled]="true" hideToggle>
+    <mat-expansion-panel-header>
+      <div class="row" style="width: 100%;">
+        <div class="col-3 d-flex justify-content-start align-items-center">
+          <p>Asset Name</p>
+        </div>
+        <div class="col-3 d-flex justify-content-center align-items-center">
+          <p>Amount Hold</p>
+        </div>
+        <div class="col-3 d-flex justify-content-center align-items-center">
+          <p>Value per unit</p>
+        </div>
+        <div class="col-3 d-flex justify-content-center align-items-center">
+          <p>Total wallet value</p>
+        </div>
+      </div>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+
+
   <mat-expansion-panel class="asset-row p-3 mb-3"
                        *ngFor="let account of accountsData; let i = index">
     <mat-expansion-panel-header>
       <div class="row " style="width: 100%;">
+
         <div class="col-3 d-flex flex-column justify-content-center align-items-start">
           <div>
             <p>
@@ -39,24 +61,100 @@
             </p>
           </div>
         </div>
+
         <div class="col-3 d-flex justify-content-center align-items-center">
           <p>
             {{account.balance.amount}}
           </p>
         </div>
+
         <div class="col-3 d-flex justify-content-center align-items-center">
           <p
-            [class]="{'down': account.exchangeRate < accountsDataCache[i]?.exchangeRate, 'up': account.exchangeRate > accountsDataCache[i]?.exchangeRate, 'flat': account.exchangeRate === accountsDataCache[i]?.exchangeRate }">
+            [class]="{
+            'down': account.exchangeRate < accountsDataCache[i]?.exchangeRate,
+            'up': account.exchangeRate > accountsDataCache[i]?.exchangeRate,
+            'flat': account.exchangeRate === accountsDataCache[i]?.exchangeRate
+            }">
             {{account.exchangeRate | number: '1.2-2'}}€
           </p>
         </div>
+
         <div class="col-3 d-flex justify-content-center align-items-center">
           <p
-            [class]="{'down': account.totalValue < accountsDataCache[i]?.totalValue, 'up': account.totalValue > accountsDataCache[i]?.totalValue, 'flat': account.totalValue === accountsDataCache[i]?.totalValue }">
+            [class]="{
+            'down': account.totalValue < accountsDataCache[i]?.totalValue,
+            'up': account.totalValue > accountsDataCache[i]?.totalValue,
+            'flat': account.totalValue === accountsDataCache[i]?.totalValue
+            }">
             {{account.totalValue | number: '1.2-2'}}€
           </p>
         </div>
+
       </div>
     </mat-expansion-panel-header>
   </mat-expansion-panel>
 </div>
+
+
+<!--<table mat-table [dataSource]="accountsData">-->
+
+<!--  &lt;!&ndash; Position Column &ndash;&gt;-->
+<!--  <ng-container matColumnDef="assetName">-->
+<!--    <th mat-header-cell *matHeaderCellDef>-->
+<!--      <h3>-->
+<!--        Asset name-->
+<!--      </h3>-->
+<!--    </th>-->
+<!--    <td mat-cell *matCellDef="let element">-->
+<!--      <p>{{element.currency.name}}</p>-->
+<!--      <p style="color:{{element.currency.color}}">{{element.currency.code}}</p>-->
+<!--    </td>-->
+<!--  </ng-container>-->
+
+<!--  &lt;!&ndash; Name Column &ndash;&gt;-->
+<!--  <ng-container matColumnDef="amountHold">-->
+<!--    <th mat-header-cell *matHeaderCellDef>-->
+<!--      <h3>-->
+<!--        Amount hold-->
+<!--      </h3>-->
+<!--    </th>-->
+<!--    <td mat-cell *matCellDef="let element"> {{element.balance.amount}} </td>-->
+<!--  </ng-container>-->
+
+<!--  &lt;!&ndash; Weight Column &ndash;&gt;-->
+<!--  <ng-container matColumnDef="amountPerUnit">-->
+<!--    <th mat-header-cell *matHeaderCellDef>-->
+<!--      <h3>-->
+<!--        Amount per unit-->
+<!--      </h3>-->
+<!--    </th>-->
+<!--    <td mat-cell *matCellDef="let element; let i = index" [class]="{-->
+<!--            'down': element.exchangeRate < accountsDataCache[i]?.exchangeRate,-->
+<!--            'up': element.exchangeRate > accountsDataCache[i]?.exchangeRate,-->
+<!--            'flat': element.exchangeRate === accountsDataCache[i]?.exchangeRate-->
+<!--            }"> {{element.exchangeRate | number: '1.2-2'}}€-->
+<!--    </td>-->
+<!--  </ng-container>-->
+
+<!--  &lt;!&ndash; Symbol Column &ndash;&gt;-->
+<!--  <ng-container matColumnDef="totalAmount">-->
+<!--    <th mat-header-cell *matHeaderCellDef>-->
+<!--      <h3>-->
+<!--        Total amount-->
+<!--      </h3>-->
+<!--    </th>-->
+<!--    <td mat-cell *matCellDef="let element let i = index;">-->
+<!--      <p-->
+<!--        [class]="{-->
+<!--        'down': element.totalValue < accountsDataCache[i]?.totalValue,-->
+<!--        'up': element.totalValue > accountsDataCache[i]?.totalValue,-->
+<!--        'flat': element.totalValue === accountsDataCache[i]?.totalValue-->
+<!--        }">-->
+<!--        {{element.totalValue | number: '1.2-2'}}€-->
+<!--      </p>-->
+<!--    </td>-->
+<!--  </ng-container>-->
+
+<!--  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+<!--</table>-->
