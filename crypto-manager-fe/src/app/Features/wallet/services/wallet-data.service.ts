@@ -22,13 +22,16 @@ export class WalletDataService {
   constructor(private http: HttpClient) {
   }
 
+  /**
+   * Recupera i dati relativi ai vari wallet e li filtra in base alla quantità di crypto posseduta.
+   * Aggiunge anche il valore di scambio della singola unità utilizzando getExchangeRates
+   */
   getAccountData(): void {
     this.http.get<IuserAccounts>('https://api.coinbase.com/v2/accounts?&limit=100')
       .pipe(
         tap((value) => {
           if (value.data !== this._pristineAccountData.value && this._pristineAccountData.value.length === 0) {
             this._pristineAccountData.next(value.data);
-            console.log(this._pristineAccountData.value);
           }
         }),
         map((data) => {
@@ -52,6 +55,10 @@ export class WalletDataService {
     });
   }
 
+  /**
+   * Recupera il valore unitario di una moneta specifica
+   * @param currency la stringa con il codice della coin
+   */
   getExchangeRates(currency: string): Observable<any> {
     return this.http.get('https://api.coinbase.com/v2/exchange-rates', {
       params: {
@@ -60,6 +67,10 @@ export class WalletDataService {
     });
   }
 
+
+  /**
+   * Recupera tutte le transazioni relative all'account corrente
+   */
   getTransactions(): void {
     this.pristineAccountData$.forEach((data) => {
       data.forEach((el) => {
@@ -69,12 +80,16 @@ export class WalletDataService {
             transactionsList.push(transactions.data);
           }
           this._transactionsData.next(transactionsList);
-          console.log(transactionsList);
         });
       });
     });
   }
 
+
+  /**
+   * Si occupa di aggiornare i dati ogni minuto
+   * @private
+   */
   private updateAccountData(): void {
     setTimeout(() => {
       this.getAccountData();

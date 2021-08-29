@@ -1,0 +1,27 @@
+.transaction-item {
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.transaction-status {
+  color: var(--flat);
+
+  &-completed {
+    color: var(--up);
+  }
+
+  &-failed {
+    color: var(--down);
+  }
+
+  &-pending {
+    color: var(--warn-color)
+  }
+
+  &-expired {
+    color: var(--warn-darker-color);
+  }
+
+  &-canceled {
+    color: var(--warn-lighter-color);
+  }
+}

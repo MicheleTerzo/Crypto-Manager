@@ -7,13 +7,15 @@ import {WalletComponent} from './components/wallet/wallet.component';
 import { WalletDataComponent } from './components/wallet-data/wallet-data.component';
 import { WalletHistoryComponent } from './components/wallet-history/wallet-history.component';
 import {ChartsModule} from 'ng2-charts';
+import { TransactionsDisplayComponent } from './components/transactions-display/transactions-display.component';
 
 
 @NgModule({
   declarations: [
     WalletComponent,
     WalletDataComponent,
-    WalletHistoryComponent
+    WalletHistoryComponent,
+    TransactionsDisplayComponent
   ],
     imports: [
         CommonModule,

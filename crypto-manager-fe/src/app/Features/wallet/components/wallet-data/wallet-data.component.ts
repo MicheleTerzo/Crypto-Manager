@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {IAccountData} from '../../../../interfaces/iaccount-data';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-wallet-data',
@@ -12,6 +13,7 @@ export class WalletDataComponent implements OnInit, OnChanges {
   accountsDataCache: IAccountData[] = [];
   @Input() walletValue = 0;
   walletValueCache = 0;
+  @Input() transactionsList: Observable<any>;
 
 
   displayedColumns: string[] = ['assetName', 'amountHold', 'amountPerUnit', 'totalAmount'];

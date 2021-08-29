@@ -12,6 +12,7 @@ import {map} from 'rxjs/operators';
 export class WalletComponent implements OnInit {
   accountData: Observable<IAccountData[]>;
   walletValue = 0;
+  transactionsList: Observable<any> = this.walletDataService.transactioinData$;
 
 
   constructor(private walletDataService: WalletDataService) {
@@ -29,4 +30,5 @@ export class WalletComponent implements OnInit {
     }));
     this.walletDataService.getAccountData();
   }
+
 }
