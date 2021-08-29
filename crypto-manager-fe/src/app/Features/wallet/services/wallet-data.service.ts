@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {IuserAccounts} from '../../../interfaces/iuser-accounts';
-import {concatMap, map, toArray} from 'rxjs/operators';
+import {concatMap, map, tap, toArray} from 'rxjs/operators';
 import {flatMap} from 'rxjs/internal/operators';
 import {IAccountData} from '../../../interfaces/iaccount-data';
 
@@ -14,8 +14,8 @@ export class WalletDataService {
 
   private _userData: BehaviorSubject<IAccountData[]> = new BehaviorSubject<IAccountData[]>(null);
   userData$ = this._userData.asObservable();
-  private _transactionData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
-  transactioinData$ = this._transactionData.asObservable();
+  private _transactionsData: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  transactioinData$ = this._transactionsData.asObservable();
   private _pristineAccountData: BehaviorSubject<IAccountData[]> = new BehaviorSubject<IAccountData[]>([]);
   pristineAccountData$ = this._pristineAccountData.asObservable();
 
@@ -25,14 +25,13 @@ export class WalletDataService {
   getAccountData(): void {
     this.http.get<IuserAccounts>('https://api.coinbase.com/v2/accounts?&limit=100')
       .pipe(
+        tap((value) => {
+          if (value.data !== this._pristineAccountData.value && this._pristineAccountData.value.length === 0) {
+            this._pristineAccountData.next(value.data);
+            console.log(this._pristineAccountData.value);
+          }
+        }),
         map((data) => {
-          const pristineData = this._pristineAccountData.value;
-          data.data.forEach((el) => {
-            if (!pristineData.includes(el)) {
-              pristineData.push(el);
-            }
-          });
-          this._pristineAccountData.next(pristineData);
           return data.data.filter((account) => {
             return parseFloat(account.balance.amount) !== 0;
           });
@@ -64,12 +63,12 @@ export class WalletDataService {
   getTransactions(): void {
     this.pristineAccountData$.forEach((data) => {
       data.forEach((el) => {
-        this.http.get(`https://api.coinbase.com/v2/accounts/${el.id}/transactions`).forEach((transaction: any) => {
-          const transactionsList = this._transactionData.value;
-          if (transaction.data.length !== 0) {
-            transactionsList.push(transaction.data);
+        this.http.get(`https://api.coinbase.com/v2/accounts/${el.id}/transactions`).forEach((transactions: any) => {
+          const transactionsList = this._transactionsData.value;
+          if (transactions.data.length !== 0) {
+            transactionsList.push(transactions.data);
           }
-          this._transactionData.next(transactionsList);
+          this._transactionsData.next(transactionsList);
           console.log(transactionsList);
         });
       });
